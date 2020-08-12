@@ -1,0 +1,15 @@
+.user-details-container {
+    display: flex;
+    justify-content: center;
+    // width: 80%;
+    // align-items: center;
+    padding: 50px 100px;
+
+    .user-card {
+        width: 450px;
+    }
+
+    .user-posts {
+        width: 800px;
+    }
+}

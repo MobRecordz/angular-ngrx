@@ -1,16 +1,10 @@
-<div class="main-container">
-
-  
-  <div class="list-container">
-     <!-- {{ postsList$ | async }}  -->
-
-     <ul class='posts-list' *ngIf="postsListWithUsers$ | async as posts">
-        <li class='post-item' *ngFor='let post of posts; let i = index;'>
-          <div class="title">{{ post.title }}</div>
-          <div class="user">{{ post.user?.username }} | {{ post.user?.email }}</div>
-        </li>
-     </ul>
-  </div>
-</div>
+<mat-toolbar color="primary" class='main-toolbar'>
+  <span>Angular/NgRx Demo App</span>
+  <span class="spacer"></span>
+  <span class="nav">
+      <button mat-button routerLink='/users' routerLinkActive='active-link'>Users</button>
+      <button mat-button routerLink='/posts' routerLinkActive='active-link'>Posts</button>
+  </span>
+</mat-toolbar>
 
 <router-outlet></router-outlet>

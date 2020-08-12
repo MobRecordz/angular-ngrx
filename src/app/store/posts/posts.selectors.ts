@@ -14,14 +14,19 @@ export const selectPostsListWithUsers = createSelector(
     selectPostsFeature,
     selectUsersFeature,
     (posts: PostsState, users: UsersState) => {
-        console.log('SELECTOR', posts, users)
         return posts.postsList.map((post) => {
             const user = users.usersList.find(user => user.id === post.userId)
-            console.log('USER:', user)
             return {
                 ...post,
                 user
             }
         })
+    }
+)
+
+export const selectUserPostsList = createSelector(
+    selectPostsFeature,
+    (posts: PostsState) => {
+        return posts.selectedUserPostsList
     }
 )

@@ -12,4 +12,8 @@ export class PostsService {
     fetchPostsList(): Observable<any> {
         return this.http.get('https://jsonplaceholder.typicode.com/posts?_limit=10')
     }
+
+    fetchPostsListByUserId(id): Observable<any> {
+      return this.http.get(`https://jsonplaceholder.typicode.com/posts?userId=${id}&_limit=10`)
+    }
 }

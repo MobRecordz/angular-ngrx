@@ -11,11 +11,13 @@ export interface Post {
 
 export interface PostsState {
     postsList: Array<Post>,
+    selectedUserPostsList: Array<Post>
     size: number
 }
 
 const initialState: PostsState = {
     postsList: [],
+    selectedUserPostsList: [],
     size: 0
 }
 
@@ -25,6 +27,11 @@ export const postsReducer = (state = initialState, action: PostsActions) => {
             return {
                 ...state,
                 postsList: action.payload.posts
+            }
+        case postsActionType.setSelectedUserPostsList:
+            return {
+                ...state,
+                selectedUserPostsList: action.payload.posts
             }
 
         default: 

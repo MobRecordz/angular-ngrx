@@ -5,10 +5,16 @@ export const selectUsersFeature = createFeatureSelector<UsersState>(USERS_NODE)
 
 export const selectUsersList = createSelector(
     selectUsersFeature,
-    (state: UsersState) => state.usersList 
+    (state: UsersState, { search = '' }) => {
+        console.log('SEARCH:', search)
+        if (search) return state.usersList.filter(item => item.name.includes(search))
+        else return state.usersList
+    }
 )
 
 export const selectUserById = createSelector(
     selectUsersFeature,
-    (state: UsersState, props) => state.usersList.find(user => user.id === props.id) 
+    (state: UsersState, props) => {
+        return state.usersList.find(user => user.id === Number(props.id))
+    }
 )

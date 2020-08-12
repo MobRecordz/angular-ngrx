@@ -7,7 +7,6 @@ import {
 } from '@ngrx/store'
 
 import { environment } from '../../environments/environment'
-import { CountState, countReducer, countNode } from './count/count.reducer'
 import { PostsState, postsReducer, POSTS_NODE } from './posts/posts.reducer'
 import { USERS_NODE, UsersState, usersReducer } from './users/users.reducer'
 

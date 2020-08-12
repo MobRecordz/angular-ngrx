@@ -1,0 +1,8 @@
+<div class="users-page container">
+    <!-- <mat-form-field>
+        <mat-label>Поиск пользователей</mat-label>
+        <input [(ngModel)]='searchValue' matInput type="text" >
+    </mat-form-field> -->
+    <users-list [usersList$]='usersList$' [searchFilter]='searchValue'></users-list>
+</div>
+
