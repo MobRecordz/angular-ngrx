@@ -44,3 +44,10 @@ export const selectPostComments = createSelector(
         return posts.selectedPostComments
     }
 )
+
+export const selectSelectedPost = createSelector(
+    selectPostsFeature,
+    (posts: PostsState) => {
+        return posts.selectedPost
+    }
+)

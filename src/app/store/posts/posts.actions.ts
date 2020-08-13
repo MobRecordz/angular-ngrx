@@ -6,6 +6,8 @@ export enum postsActionType {
     setPostsList = '[Posts] Set Posts List',
     fetchSelectedUserPostsList = '[Posts] Fetch Selected User Posts List',
     setSelectedUserPostsList = '[Posts] Set Selected User Posts List',
+    fetchSelectedPost = '[Posts] Fetch Selected Post',
+    setSelectedPost = '[Posts] Set Selectd Post',
     fetchSelectedPostComments = '[Posts] Fetch Selected Post Comments',
     setSelectedPostComments = '[Posts] Set Selected Post Comments',
 }
@@ -32,6 +34,18 @@ export class setSelectedUserPostsListAction implements Action {
     constructor(public payload: { posts: Post[] }) {}
 }
 
+export class fetchSelectedPostAction implements Action {
+    readonly type = postsActionType.fetchSelectedPost
+
+    constructor(public payload: { id: number }) {}
+}
+
+export class setSelectedPostAction implements Action {
+    readonly type = postsActionType.setSelectedPost
+
+    constructor(public payload: { post: Post }) {}
+}
+
 export class fetchSelectedPostCommentsAction implements Action {
     readonly type = postsActionType.fetchSelectedPostComments
 
@@ -49,5 +63,7 @@ export type PostsActions =
     setPostsListAction |
     fetchSelectedUserPostsListAction |
     setSelectedUserPostsListAction |
+    fetchSelectedPostAction |
+    setSelectedPostAction |
     fetchSelectedPostCommentsAction |
     setSelectedPostCommentsAction

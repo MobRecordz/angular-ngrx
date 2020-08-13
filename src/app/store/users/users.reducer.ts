@@ -28,12 +28,12 @@ export interface User {
 
 export interface UsersState {
     usersList: Array<User>,
-    size: number
+    selectedUser: User | null,
 }
 
 const initialState: UsersState = {
     usersList: [],
-    size: 0
+    selectedUser: null
 }
 
 export const usersReducer = (state = initialState, action) => {

@@ -22,4 +22,8 @@ export class PostsService {
     fetchPostComments(postId): Observable<any> {
       return this.http.get(`${this.host}/posts/${postId}/comments`)
     }
+
+    fetchPostById(postId): Observable<any> {
+      return this.http.get(`${this.host}/posts/${postId}`)
+    }
 }

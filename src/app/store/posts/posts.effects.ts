@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { Actions, Effect, ofType } from '@ngrx/effects'
 import { map, mergeMap } from 'rxjs/operators'
-import { postsActionType, setPostsListAction, setSelectedUserPostsListAction, setSelectedPostCommentsAction } from './posts.actions'
+import { postsActionType, setPostsListAction, setSelectedUserPostsListAction, setSelectedPostCommentsAction, setSelectedPostAction } from './posts.actions'
 import { usersActionType, setUsersListAction } from '../users/users.actions'
 import { PostsService } from '../../services/posts.service'
 import { UsersService } from 'src/app/services/users.service'
@@ -53,6 +53,19 @@ export class AppEffects {
             mergeMap(() => this.usersService.fetchUsersList().pipe(
                 map(users => new setUsersListAction({ users }))
             ))
+        )
+    }
+
+    @Effect()
+    fetchSelectedPost$() {
+        return this.actions$.pipe(
+            ofType(postsActionType.fetchSelectedPost),
+            map((action: any) => action.payload),
+            mergeMap((payload) => {
+                return this.postsService.fetchPostById(payload.id).pipe(
+                    map(post => new setSelectedPostAction({ post }))
+                )
+            })
         )
     }
 

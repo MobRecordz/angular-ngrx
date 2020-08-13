@@ -55,6 +55,11 @@ export const postsReducer = (state = initialState, action: PostsActions) => {
                 ...state,
                 selectedPostComments: action.payload.comments
             }
+        case postsActionType.setSelectedPost:
+            return {
+                ...state,
+                selectedPost: action.payload.post
+            }
 
         default: 
             return state
