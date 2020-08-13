@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { Observable } from 'rxjs';
 import { User } from 'src/app/store/users/users.reducer';
 import { Store, select } from '@ngrx/store';
 import { selectUsersList, selectUserById } from 'src/app/store/users/users.selectors';
 import { selectUserPostsList } from 'src/app/store/posts/posts.selectors'
-import { fetchSelectedUserPostsListAction } from 'src/app/store/posts/posts.actions';
+import { fetchSelectedUserPostsListAction, setSelectedUserPostsListAction } from 'src/app/store/posts/posts.actions';
 import { Post } from 'src/app/store/posts/posts.reducer';
 
 @Component({
@@ -13,7 +13,7 @@ import { Post } from 'src/app/store/posts/posts.reducer';
   templateUrl: './user-details.component.html',
   styleUrls: ['./user-details.component.scss']
 })
-export class UserDetailsComponent implements OnInit {
+export class UserDetailsComponent implements OnDestroy {
   selectedUser: User
   userPosts: Post[]
 
@@ -29,10 +29,12 @@ export class UserDetailsComponent implements OnInit {
     this.storePosts$.pipe(
       select(selectUserPostsList)
     ).subscribe((posts: Post[]) => this.userPosts = posts)
+
+    this.storePosts$.dispatch(new fetchSelectedUserPostsListAction({ id: Number(this.route.snapshot.paramMap.get('id')) }))
   }
 
-  ngOnInit(): void {
-    this.storePosts$.dispatch(new fetchSelectedUserPostsListAction({ id: Number(this.route.snapshot.paramMap.get('id')) }))
+  ngOnDestroy(): void {
+    this.storePosts$.dispatch(new setSelectedUserPostsListAction({ posts: [] }))
   }
 
 }

@@ -1,0 +1,11 @@
+<mat-selection-list [multiple]="false">
+    <div mat-subheader>POSTS LIST</div>
+
+    <mat-list-option  *ngFor='let post of postsList$ | async' [routerLink]='["/posts", post.id]'>
+        <div mat-line>{{ post.title }}</div>
+        <div mat-line>
+            <span class='mat-body-strong'>{{ post.body }}</span>
+        </div>
+        <div mat-line matCardSubtitle>{{ post.user && post.user.username }} - {{ post.user && post.user.email }}</div>
+    </mat-list-option>
+</mat-selection-list>

@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store'
-import { PostsState, POSTS_NODE } from './posts.reducer'
+import { PostsState, POSTS_NODE, UserPost } from './posts.reducer'
 import { selectUsersFeature } from '../users/users.selectors'
 import { UsersState } from '../users/users.reducer'
 
@@ -24,9 +24,23 @@ export const selectPostsListWithUsers = createSelector(
     }
 )
 
+export const selectUserPostById = createSelector(
+    selectPostsListWithUsers,
+    (postsList: UserPost[], props: { id: number }) => {
+        return postsList.find(post => post.id === props.id)
+    } 
+)
+
 export const selectUserPostsList = createSelector(
     selectPostsFeature,
     (posts: PostsState) => {
         return posts.selectedUserPostsList
+    }
+)
+
+export const selectPostComments = createSelector(
+    selectPostsFeature,
+    (posts: PostsState) => {
+        return posts.selectedPostComments
     }
 )

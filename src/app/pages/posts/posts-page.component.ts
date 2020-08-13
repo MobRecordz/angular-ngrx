@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Post, PostsState } from 'src/app/store/posts/posts.reducer';
+import { Observable } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { selectPostsList, selectPostsListWithUsers } from 'src/app/store/posts/posts.selectors';
 
 @Component({
   selector: 'app-posts',
@@ -7,7 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostsComponent implements OnInit {
 
-  constructor() { }
+  public postsList$: Observable<Post[]> = this.storeUsers$.pipe(
+    select(selectPostsListWithUsers),
+    // tap(v => console.log('USER-PAGE', v))
+  )
+
+  constructor(private storeUsers$: Store<PostsState>) {}
 
   ngOnInit(): void {
   }

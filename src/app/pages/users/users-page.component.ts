@@ -16,7 +16,7 @@ export class UsersComponent implements OnInit {
 
   public searchValue: string = ''
   public usersList$: Observable<User[]> = this.storeUsers$.pipe(
-    select(selectUsersList, { search: this.searchValue }),
+    select(selectUsersList),
     // tap(v => console.log('USER-PAGE', v))
   )
 

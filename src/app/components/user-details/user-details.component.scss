@@ -13,3 +13,12 @@
         width: 800px;
     }
 }
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 90%;
+    overflow: hidden;
+}

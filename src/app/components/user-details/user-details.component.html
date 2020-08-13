@@ -1,5 +1,5 @@
 
-<div class="user-details-container">
+<div *ngIf='userPosts.length; else loading' class="user-details-container">
     <mat-card class='user-card'>
         <!-- <mat-card-actions>
             <button mat-button>GO BACK</button>
@@ -24,7 +24,7 @@
     <mat-selection-list [multiple]="false" class='user-posts'>
         <div mat-subheader>USER POSTS LIST</div>
     
-        <mat-list-option  *ngFor='let post of userPosts' >
+        <mat-list-option  *ngFor='let post of userPosts'  [routerLink]='["/posts", post.id]'>
             <!-- [routerLink]='["/users", user.id]' -->
             <div mat-line mat-card-title>
                 {{ post.title }}
@@ -34,7 +34,14 @@
             </div>
         </mat-list-option>
     </mat-selection-list>
+    
 </div>
+
+<ng-template #loading>
+    <div class="loading">
+        <mat-spinner [diameter]='40' [strokeWidth]='2'></mat-spinner>
+    </div>
+</ng-template>
 
 
 <!-- <mat-card-title>Shiba Inu</mat-card-title>

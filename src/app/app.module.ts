@@ -29,6 +29,9 @@ import { MatGridListModule } from '@angular/material/grid-list'
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card'
 import { MatInputModule } from '@angular/material/input'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { PostsListComponent } from './components/posts-list/posts-list.component';
+import { PostDetailsComponent } from './components/post-details/post-details.component'
 
 @NgModule({
   declarations: [
@@ -36,7 +39,9 @@ import { MatInputModule } from '@angular/material/input'
     UsersComponent,
     PostsComponent,
     UsersListComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    PostsListComponent,
+    PostDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +60,8 @@ import { MatInputModule } from '@angular/material/input'
     MatGridListModule,
     MatListModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressSpinnerModule
   ],
   providers: [PostsService],
   bootstrap: [AppComponent]
